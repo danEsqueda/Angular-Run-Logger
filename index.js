@@ -1,9 +1,19 @@
 'use strict';
 
 var express = require('express');
-var app = express();
-var port = process.env.PORT || 3000;
+var router = express.Router();
 
-app.listen(port, function() {
-  console.log('Listening on port: ' + port);
+router.use(function(req, res, next) {
+  console.log('Doing something');
+  next();
 });
+
+router.get('/runningstats', function(req, res) {
+  res.send('Welcome to Running Stats!');
+});
+
+module.exports = router;
+
+
+
+
