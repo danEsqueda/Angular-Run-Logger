@@ -5,14 +5,14 @@ var Schema = mongoose.Schema;
 
 var RunSchema = new Schema({
   date: {
-    time: {type: Date, default: Date.getTime},
-    day: {type: Date, default: Date.getDay},
-    month: {type: Date, default: Date.getMonth},
-    dayofmonth: {type: Date, default: Date.getDate},
-    year: {type: Date, default: Date.getFullYear},
+    day: String,
+    time: String,
   },
   name: String,
-  distance: Number,
+  distance: {
+    unit: {type: String, default: 'miles'},
+    dist: Number,
+  },
   time: {
     hours: Number,
     minutes: Number,

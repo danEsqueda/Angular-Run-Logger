@@ -3,6 +3,7 @@
 var app = require('../index.js');
 var chai = require('chai');
 var expect = chai.expect;
+var Run = require('../run');
 var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
@@ -20,6 +21,33 @@ describe('api', function() {
       done();
     });
   });
+
+  it('should Post a new run to the runs database', function(done) {
+    var d = new Date();
+    var testRun = new Run({
+      date: {
+        day: d.toDateString(),
+        time: d.toTimeString(),
+      },
+      name: 'test run',
+      distance: {
+        dist: 3,
+      },
+      time: {
+        hours: 0,
+        minutes: 29,
+        seconds: 0,
+      },
+    });
+    chai.request(app)
+    .post('/runningstats/myruns')
+    .send(testRun)
+    .end(function(err, res) {
+      expect(res).to.have.status(200);
+      done();
+    });
+  });
+
 });
 
 
