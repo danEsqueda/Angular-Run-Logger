@@ -2,6 +2,21 @@
 
 module.exports = function(grunt) {
   grunt.initConfig({
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
+    browserify: {
+      dist: {
+        files: {
+          './app-bundle.js' : ['./**/*.js', '!./app-bundle.js']
+        }
+      }
+    },
+
     jshint: {
       all: {
         src: ['./*.js', './test/**/*_test.js'],
@@ -17,6 +32,7 @@ module.exports = function(grunt) {
         },
       },
     },
+
     jscs: {
       all: {
         src: ['./*.js', './test/**/*_test.js'],
@@ -26,6 +42,7 @@ module.exports = function(grunt) {
         },
       },
     },
+
     simplemocha: {
       all: {
         src: ['./test/**/*_test.js'],
@@ -33,7 +50,10 @@ module.exports = function(grunt) {
     },
     watch: {
       files: ['./*.js', './test/**/*_test.js'],
-      tasks: ['lint', 'test'],
+      tasks: ['lint', 'test', 'browserify'],
+      options: {
+        spawn: false,
+      },
     },
   });
 

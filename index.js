@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var Run = require('./run');
+var Run = require('./src/server/run');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');

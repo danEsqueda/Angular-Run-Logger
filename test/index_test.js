@@ -3,7 +3,7 @@
 var app = require('../index.js');
 var chai = require('chai');
 var expect = chai.expect;
-var Run = require('../run');
+var Run = require('../src/server/run');
 var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
