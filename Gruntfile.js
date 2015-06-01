@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         files: {
-          '.public/app-bundle.js': ['./src/client/*.js'],
+          './public/scripts/app-bundle.js': ['./src/client/*.js'],
         },
       },
     },
@@ -61,6 +61,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jscs');
+  grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask('test', 'simplemocha');
   grunt.registerTask('lint', ['jshint', 'jscs']);
