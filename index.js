@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 
-
+app.use(express.static('./src/client'));
+app.use(express.static('./public'));
 
 mongoose.connect('mongodb://localhost:27017/runs');
 
@@ -22,21 +23,7 @@ router.get('/runningstats', function(req, res) {
 });
 
 router.post('/runningstats/myruns', jsonParser, function(req, res) {
-  var run = new Run({
-    date: {
-      day: req.body.date.day,
-      time: req.body.date.time,
-    },
-    name: req.body.name,
-    distance: {
-      dist: req.body.distance.dist,
-    },
-    time: {
-      hours: req.body.time.hours,
-      minutes: req.body.time.minutes,
-      seconds: req.body.time.seconds,
-    },
-  });
+  var run = new Run(req.body);
 
   run.save(function(err) {
       if (err) {
@@ -48,6 +35,7 @@ router.post('/runningstats/myruns', jsonParser, function(req, res) {
 });
 
 app.use(router);
+
 
 module.exports = app;
 

@@ -4,19 +4,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var RunSchema = new Schema({
-  date: {
-    day: String,
-    time: String,
-  },
   name: String,
-  distance: {
-    unit: {type: String, default: 'miles'},
-    dist: Number,
-  },
-  time: {
-    hours: Number,
-    minutes: Number,
-    seconds: Number,
+  distance: Number,
+  duration: {
+    hrs: Number,
+    mins: Number,
+    sec: Number,
   },
 });
 

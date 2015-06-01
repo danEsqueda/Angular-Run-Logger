@@ -1,69 +1,73 @@
 // Karma configuration
 // Generated on Fri May 29 2015 09:19:10 GMT-0700 (PDT)
-
+'use strict';
 module.exports = function(config) {
   config.set({
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
+    // Base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    // Frameworks to use
+    // Available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
 
-    // list of files / patterns to load in the browser
+    // List of files / patterns to load in the browser
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'src/client/*.js',
-      'spec/**/*[sS]pec.js'
+      'spec/**/*[sS]pec.js',
 
     ],
 
 
-    // list of files to exclude
+    // List of files to exclude
     exclude: [
     ],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // Preprocess matching files before serving them to the browser
+    // Available preprocessors: https://npmjs.org/browse/keyword/
+    // karma-preprocessor
     preprocessors: {
     },
 
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    // Test results reporter to use
+    // Possible values: 'dots', 'progress'
+    // Available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 
 
-    // web server port
+    // Web server port
     port: 9876,
 
 
-    // enable / disable colors in the output (reporters and logs)
+    // Enable / disable colors in the output (reporters and logs)
     colors: true,
 
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // Level of logging
+    // Possible values: config.LOG_DISABLE || config.LOG_ERROR ||
+    // config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
+    // Enable / disable watching file and executing tests whenever
+    // any file changes
     autoWatch: false,
 
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    // Start these browsers
+    // Available browser launchers: https://npmjs.org/browse/keyword/
+    // karma-launcher
     browsers: ['Chrome'],
 
 
     // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    // If true, Karma captures browsers, runs the tests and exits
+    singleRun: true,
   });
 };

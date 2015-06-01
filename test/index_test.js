@@ -25,18 +25,12 @@ describe('api', function() {
   it('should Post a new run to the runs database', function(done) {
     var d = new Date();
     var testRun = new Run({
-      date: {
-        day: d.toDateString(),
-        time: d.toTimeString(),
-      },
       name: 'test run',
-      distance: {
-        dist: 3,
-      },
-      time: {
-        hours: 0,
-        minutes: 29,
-        seconds: 0,
+      distance: 3,
+      duration: {
+        hrs: 0,
+        mins: 29,
+        sec: 0,
       },
     });
     chai.request(app)

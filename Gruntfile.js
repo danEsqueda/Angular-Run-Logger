@@ -5,16 +5,16 @@ module.exports = function(grunt) {
 
     karma: {
       unit: {
-        configFile: 'karma.conf.js'
-      }
+        configFile: 'karma.conf.js',
+      },
     },
 
     browserify: {
       dist: {
         files: {
-          './app-bundle.js' : ['./**/*.js', '!./app-bundle.js']
-        }
-      }
+          '.public/app-bundle.js': ['./src/client/*.js'],
+        },
+      },
     },
 
     jshint: {

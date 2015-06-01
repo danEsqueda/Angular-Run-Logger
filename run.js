@@ -13,7 +13,7 @@ var RunSchema = new Schema({
     unit: {type: String, default: 'miles'},
     dist: Number,
   },
-  time: {
+  duration: {
     hours: Number,
     minutes: Number,
     seconds: Number,
