@@ -2,7 +2,7 @@
 var Run = require('./run');
 
 angular.module('runningStats', [])
-  .controller('enterRun', ['$scope', '$http', function($scope, $http) {
+  .controller('RunController', ['$scope', '$http', function($scope, $http) {
 
       $scope.runs = [];
       $scope.initializeState = function() {
@@ -23,10 +23,10 @@ angular.module('runningStats', [])
 
         $http.post('runningstats/myruns', newRun)
         .success(function(data, status, headers, config) {
-          console.log('success!!');
+          $scope.postMessage = data.message;
         })
         .error(function(data, status, headers, config) {
-          console.error('failure');
+          $scope.postMessage = 'Error Saving Run';
         });
         // TODO: make a post to web service with JSON object to create a new run
       };

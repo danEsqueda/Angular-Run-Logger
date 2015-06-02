@@ -21,6 +21,7 @@ app.get('/', function(req, res) {
   res.redirect('/index.html');
 });
 
+
 router.post('/runningstats/myruns', jsonParser, function(req, res) {
   var run = new Run(req.body);
 
@@ -28,7 +29,7 @@ router.post('/runningstats/myruns', jsonParser, function(req, res) {
       if (err) {
         res.send(err);
       } else {
-        res.send('Run saved!');
+        res.json({message: 'Run saved!'});
       }
     });
 });

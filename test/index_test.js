@@ -1,6 +1,6 @@
 'use strict';
 
-var app = require('../index.js');
+var app = require('../src/server/index.js');
 var chai = require('chai');
 var expect = chai.expect;
 var Run = require('../src/server/run');
@@ -10,16 +10,13 @@ chai.use(chaiHttp);
 
 describe('api', function() {
 
-  it('should respond with message at home page', function(done) {
-    chai.request(app)
-    .get('/runningstats')
-    .set('Content-Type', 'text/plain')
-    .send('Welcome to Running Stats!')
-    .end(function(err, res) {
-      expect(res).to.have.status(200);
-      expect(res.text).to.eql('Welcome to Running Stats!');
-      done();
+  beforeEach(function(done) {
+    Run.remove({}, function(err) {
+      if (err) {
+        return console.log(err);
+      }
     });
+    done();
   });
 
   it('should Post a new run to the runs database', function(done) {
@@ -28,7 +25,7 @@ describe('api', function() {
       name: 'test run',
       distance: 3,
       duration: {
-        hrs: 0,
+        hrs: 1,
         mins: 29,
         sec: 0,
       },
