@@ -17,7 +17,7 @@ router.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function(req, res) {
+app.get('/runningstats/myruns', function(req, res) {
   res.redirect('/index.html');
 });
 
@@ -32,6 +32,18 @@ router.post('/runningstats/myruns', jsonParser, function(req, res) {
         res.json({message: 'Run saved!'});
       }
     });
+});
+
+router.delete('/runningstats/myruns/:name', jsonParser, function(req, res) {
+  console.log(req.params.name);
+  Run.findOneAndRemove({name: req.params.name}, function(err, run) {
+    console.log(run);
+    if (err || run === null) {
+      return res.status(404).json({message: 'Run not found'});
+    } else {
+      return res.status(200).json({message: 'Delete successful!'});
+    }
+  });
 });
 
 app.use(router);

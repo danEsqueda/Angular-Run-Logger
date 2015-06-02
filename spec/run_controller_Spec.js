@@ -16,6 +16,7 @@ describe('enterRun', function() {
          $scope : scope
       });
       scope.initializeState();
+
   }));
 
   it('addRun function adds a run', function() {
@@ -25,12 +26,16 @@ describe('enterRun', function() {
     expect(scope.newRunHrs).toEqual(0);
     expect(scope.newRunMins).toEqual(0);
     expect(scope.newRunSec).toEqual(0);
+
     scope.newRunName = 'test run';
     scope.newRunDistance = 10;
     scope.newRunHrs = 1;
     scope.newRunMins = 30;
     scope.newRunSec = 47;
+    httpBackend.expectPOST('/runningstats/myruns')
+    .respond({message : 'Run Saved!'});
     scope.addRun();
+    httpBackend.flush();
     console.log(scope.runs);
     expect(scope.runs[0].name).toEqual('test run');
     expect(scope.runs[0].distance).toEqual(10);
