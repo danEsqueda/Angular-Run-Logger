@@ -5,7 +5,7 @@ var Run = function(name, distance, hrs, mins, sec) {
     duration: {
       hrs: hrs,
       mins: mins,
-      sec: sec
+      sec: sec,
     },
   }
   return run;

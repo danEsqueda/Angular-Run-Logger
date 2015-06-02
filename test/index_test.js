@@ -43,10 +43,10 @@ describe('api', function() {
 
   it('should Delete a run from the runs database', function(done) {
     chai.request(app)
-    .delete('/runningstats/myruns/:name')
-    .send(testRun.name)
+    .delete('/runningstats/myruns/' + testRun.name)
     .end(function(err, res) {
-      expect(res).to.have.status(204);
+      expect(res).to.have.status(200);
+      expect(res.body.message).to.eql('Delete Successful!');
       done();
     });
   });

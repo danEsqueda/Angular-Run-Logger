@@ -41,7 +41,7 @@ router.delete('/runningstats/myruns/:name', jsonParser, function(req, res) {
     if (err || run === null) {
       return res.status(404).json({message: 'Run not found'});
     } else {
-      return res.status(200).json({message: 'Delete successful!'});
+      return res.status(200).json({message: 'Delete Successful!'});
     }
   });
 });

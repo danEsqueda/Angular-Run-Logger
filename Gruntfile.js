@@ -21,7 +21,7 @@ module.exports = function(grunt) {
           verbose: false,
           cleanTargetDir: false,
           cleanBowerDir: false,
-          bowerOptions: {}
+          bowerOptions: {},
         },
       },
     },
@@ -29,15 +29,16 @@ module.exports = function(grunt) {
     karma: {
       all:
       {
-        singleRun : true,
-        configFile : "karma.conf.js"
-      }
+        singleRun: true,
+        configFile: 'karma.conf.js',
+      },
     },
 
     browserify: {
       dist: {
         files: {
-          './public/scripts/app-bundle.js': ['./src/client/app.js', './src/client/*.js'],
+          './public/scripts/app-bundle.js': ['./src/client/app.js',
+          './src/client/*.js', ],
         },
       },
     },
@@ -55,7 +56,8 @@ module.exports = function(grunt) {
 
     jscs: {
       all: {
-        src: ['./*.js', './test/**/*_test.js', './src/**/*.js', './spec/**/*.js'],
+        src: ['./*.js', './test/**/*_test.js', './src/**/*.js',
+        './spec/**/*.js', ],
         options: {
           config: '.jscsrc',
           verbose: true,
