@@ -4,6 +4,7 @@ var Run = require('./run');
 angular.module('runningStats', [])
   .controller('RunController', ['$scope', '$http', function($scope, $http) {
 
+    $scope.filteredRuns = [];
     $scope.runs = [];
     $scope.message = '';
     $scope.initializeState = function() {
@@ -27,6 +28,23 @@ angular.module('runningStats', [])
         }
       }
       return -1;
+    };
+
+    $scope.getRun = function() {
+      var newRun = new Run($scope.newRunName, $scope.newRunDistance,
+        $scope.newRunHrs, $scope.newRunMins, $scope.newRunSec);
+      var index = $scope.findRun('name', newRun.name);
+
+      $http.get('/runningstats/myruns/' + newRun.name)
+      .success(function(data, status, headers, config) {
+
+        $scope.message = status.toString() + ' ' + data.message;
+        $scope.filteredRuns.push(newRun);
+        $scope.initializeState();
+      })
+      .error(function(data, status, headers, config) {
+        $scope.message = status.toString() + ' ' + data.message;
+      });
     };
 
     $scope.addRun = function() {

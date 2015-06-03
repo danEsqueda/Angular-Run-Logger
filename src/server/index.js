@@ -21,6 +21,16 @@ app.get('/runningstats/myruns', function(req, res) {
   res.redirect('/index.html');
 });
 
+router.get('/runningstats/myruns/:name', jsonParser, function(req, res) {
+  Run.findOne({name: req.params.name}, function(err, run) {
+    if (err || run === null) {
+      return res.statsu(404).json({message: 'Run Not Found'});
+    } else {
+      return res.status(200).json({message: 'Here Is Your Run!'});
+    }
+  });
+});
+
 
 router.post('/runningstats/myruns', jsonParser, function(req, res) {
   var run = new Run(req.body);

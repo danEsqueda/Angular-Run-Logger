@@ -71,21 +71,36 @@
             <button type="button" class="btn btn-md btn-danger" data-ng-click="deleteRun()">Delete Run</button>
           </div>
           <div class="col-lg-3">
-            <button type="button" class="btn btn-md btn-primary" data-ng-click="addRun()">Get Run</button>
+            <button type="button" class="btn btn-md btn-primary" data-ng-click="getRun()">Get Run</button>
           </div>
           <div class="col-lg-3">
-            <button type="button" class="btn btn-md btn-info" data-ng-click="addRun()">Update Run</button>
+            <button type="button" class="btn btn-md btn-info" data-ng-click="updateRun()">Update Run</button>
           </div>
         </div>
-        <div>
-          <ol>
-            <li data-ng-repeat="run in runs track by $index">
-              Route: {{run.name}}<br>
-              Distance: {{run.distance}} miles<br>
-              Duration: {{run.duration.hrs}}:{{run.duration.mins}}:{{run.duration.sec}}
-            </li>
-          </ol>
+
+        <div class = "Row">
+          <div class="col-lg-5">
+            <h4>Posted Runs:<br></h4>
+            <ol>
+              <li data-ng-repeat="run in runs track by $index">
+                Route: {{run.name}}<br>
+                Distance: {{run.distance}} miles<br>
+                Duration: {{run.duration.hrs}}:{{run.duration.mins}}:{{run.duration.sec}}
+              </li>
+            </ol>
+          </div>
+          <div class="col-lg-5">
+            <h4>Individual Runs:<br></h4>
+            <ol>
+              <li data-ng-repeat="run in filteredRuns track by $index">
+                Route: {{run.name}}<br>
+                Distance: {{run.distance}} miles<br>
+                Duration: {{run.duration.hrs}}:{{run.duration.mins}}:{{run.duration.sec}}
+              </li>
+            </ol>
+          </div>
         </div>
+
       </div>
     </div>
     <div>
