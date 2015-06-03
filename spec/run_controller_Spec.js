@@ -6,6 +6,7 @@ describe('enterRun', function() {
   var runController;
   var httpBackend;
   var scope;
+
   var setNewRun = function() {
     scope.newRunName = 'test run';
     scope.newRunDistance = 10;
@@ -55,7 +56,7 @@ describe('enterRun', function() {
     scope.deleteRun();
     httpBackend.flush();
     expect(scope.runs.length).toEqual(0);
-    expect(scope.message).toEqual('200 Delete Successful!');
+    expect(scope.message).toEqual('Delete Successful!');
   });
 
   it('getRun function displays run to user', function() {
@@ -65,7 +66,17 @@ describe('enterRun', function() {
     scope.getRun();
     httpBackend.flush();
     expect(scope.filteredRuns[0].name).toEqual('test run');
-    expect(scope.message).toEqual('200 Here Is Your Run!');
+    expect(scope.message).toEqual('Here Is Your Run!');
+  });
+
+  it('updateRun function updates a run', function() {
+    setNewRun();
+    httpBackend.expectPUT('/runningstats/myruns/' + scope.newRunName)
+    .respond({message: 'Update Successful!'})
+    scope.updateRun(scope.newRunName);
+    httpBackend.flush();
+    expect(scope.message).toEqual('Update Successful!');
+    expect(scope.runs.length).toEqual(1);
   });
 
 });

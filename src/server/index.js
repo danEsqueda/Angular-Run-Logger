@@ -34,7 +34,7 @@ router.get('/runningstats/myruns/:name', jsonParser, function(req, res) {
 
 router.post('/runningstats/myruns', jsonParser, function(req, res) {
   var run = new Run(req.body);
-
+  console.log(run);
   run.save(function(err) {
     if (err) {
       return res.status(404).json({message: 'Could Not Add Run!'});
@@ -47,6 +47,7 @@ router.post('/runningstats/myruns', jsonParser, function(req, res) {
 router.put('/runningstats/myruns/:name', jsonParser, function(req, res) {
   var updatedRun = new Run(req.body);
   Run.findOne({name: req.params.name}, function(err, run) {
+    console.log(run);
     if (err || run === null) {
       return res.status(404).json({message: 'Run not found'});
     } else {
