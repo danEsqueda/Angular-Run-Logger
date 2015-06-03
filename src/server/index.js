@@ -36,12 +36,34 @@ router.post('/runningstats/myruns', jsonParser, function(req, res) {
   var run = new Run(req.body);
 
   run.save(function(err) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({message: 'Run saved!'});
-      }
+    if (err) {
+      return res.status(404).json({message: 'Could Not Add Run!'});
+    } else {
+      return res.status(200).json({message: 'Run Saved!'});
+    }
     });
+});
+
+router.put('/runningstats/myruns/:name', jsonParser, function(req, res) {
+  var updatedRun = new Run(req.body);
+  Run.findOne({name: req.params.name}, function(err, run) {
+    if (err || run === null) {
+      return res.status(404).json({message: 'Run not found'});
+    } else {
+      run.name = updatedRun.name;
+      run.distance = updatedRun.distance;
+      run.duration.hrs = updatedRun.duration.hrs;
+      run.duration.mins = updatedRun.duration.mins;
+      run.duration.sec = updatedRun.duration.sec;
+      run.save(function(err) {
+        if (err) {
+          return res.status(400).json({message: 'Run Could Not Be Updated'});
+        } else {
+          return res.status(200).json({message: 'Run Updated!'});
+        }
+      });
+    }
+  });
 });
 
 router.delete('/runningstats/myruns/:name', jsonParser, function(req, res) {

@@ -38,12 +38,12 @@ angular.module('runningStats', [])
       $http.get('/runningstats/myruns/' + newRun.name)
       .success(function(data, status, headers, config) {
 
-        $scope.message = status.toString() + ' ' + data.message;
+        $scope.message = data.message;
         $scope.filteredRuns.push(newRun);
         $scope.initializeState();
       })
       .error(function(data, status, headers, config) {
-        $scope.message = status.toString() + ' ' + data.message;
+        $scope.message = data.message;
       });
     };
 
@@ -59,9 +59,25 @@ angular.module('runningStats', [])
         $scope.initializeState();
       })
       .error(function(data, status, headers, config) {
-        $scope.message = 'Error Saving Run';
+        $scope.message = data.message;
       });
       // TODO: make a post to web service with JSON object to create a new run
+    };
+
+    $scope.updateRun = function(name) {
+      var newRun = new Run($scope.newRunName, $scope.newRunDistance,
+        $scope.newRunHrs, $scope.newRunMins, $scope.newRunSec);
+      var index = $scope.findRun('name', name);
+
+      $http.put('/runningstats/myruns/' + name, newRun)
+      .success(function(data, status, headers, config) {
+        $scope.runs.splice(index, 1, newRun);
+        $scope.initializeState();
+        $scope.message = data.message;
+      })
+      .error(function(data, status, headers, config) {
+        $scope.message = data.message;
+      });
     };
 
     $scope.deleteRun = function() {
@@ -72,12 +88,12 @@ angular.module('runningStats', [])
 
       $http.delete('/runningstats/myruns/' + newRun.name)
       .success(function(data, status, headers, config) {
-        $scope.message = status.toString() + ' ' + data.message;
+        $scope.message = data.message;
         $scope.runs.splice(index, 1);
         $scope.initializeState();
       })
       .error(function(data, status, headers, config) {
-        $scope.message = status.toString() + ' ' + data.message;
+        $scope.message = data.message;
       });
     };
 

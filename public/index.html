@@ -40,7 +40,7 @@
 
     <div class="container">
       <div class="jumbotron">
-        <h1>Enter Your Run: </h1>
+        <h1 data-ng-model="message">Enter Your Run:     {{message}}</h1>
         <div class="row">
           <div class="col-md-3">
             <div class="input-group input-group-sm">
@@ -74,7 +74,14 @@
             <button type="button" class="btn btn-md btn-primary" data-ng-click="getRun()">Get Run</button>
           </div>
           <div class="col-lg-3">
-            <button type="button" class="btn btn-md btn-info" data-ng-click="updateRun()">Update Run</button>
+            <button type="button" class="btn btn-md btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Update Run
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li data-ng-repeat="run in runs track by $index">
+                <a href="#" data-ng-click="updateRun(run.name)">{{run.name}}</a>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -100,13 +107,8 @@
             </ol>
           </div>
         </div>
-
       </div>
     </div>
-    <div>
-      <h2 data-ng-model="message">{{message}}</h2>
-    </div>
-
 
 
 

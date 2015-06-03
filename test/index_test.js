@@ -31,7 +31,6 @@ describe('api', function() {
 
 
   it('should Post a new run to the runs database', function(done) {
-
     chai.request(app)
     .post('/runningstats/myruns')
     .send(testRun)
