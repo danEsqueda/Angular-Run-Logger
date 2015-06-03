@@ -58,4 +58,14 @@ describe('enterRun', function() {
     expect(scope.message).toEqual('200 Delete Successful!');
   });
 
+  it('getRun function displays run to user', function() {
+    setNewRun();
+    httpBackend.expectGET('/runningstats/myruns/' + scope.newRunName)
+    .respond({message: 'Here Is Your Run!'})
+    scope.getRun();
+    httpBackend.flush();
+    expect(scope.filteredRuns[0].name).toEqual('test run');
+    expect(scope.message).toEqual('200 Here Is Your Run!');
+  });
+
 });

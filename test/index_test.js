@@ -41,6 +41,16 @@ describe('api', function() {
     });
   });
 
+  it('should GET a run from the runs database', function(done) {
+    chai.request(app)
+    .get('/runningstats/myruns/' + testRun.name)
+    .end(function(err, res) {
+      expect(res).to.have.status(200);
+      expect(res.body.message).to.eql('Here Is Your Run!');
+      done();
+    });
+  });
+
   it('should Delete a run from the runs database', function(done) {
     chai.request(app)
     .delete('/runningstats/myruns/' + testRun.name)
